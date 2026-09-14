@@ -7,7 +7,7 @@ import toast from 'react-hot-toast';
 
 export default function ApiKeyPage() {
     const [series, setSeries] = useState([]);
-    const [loading, setLoading] = useStae(true);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         async function buscarSeries() {
@@ -49,5 +49,5 @@ export default function ApiKeyPage() {
         )}
         </main>
     )
-    
+
 }
