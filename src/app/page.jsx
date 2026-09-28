@@ -1,16 +1,19 @@
 import Card from '@components/Card';
-import { examples } from '@/data/crud';
+import { examples, crud } from '@/data/crud';
 import styles from './page.module.css';
 
 
 export default async function Page() {
+    const cards = [...examples, ...crud];
+
     return (
         <>
 
         <main className={styles.main}>
-            {examples.map(({id, method, verb, description, color, Icon }) => (
+            {cards.map(
+                ({id, method, verb, description, color, Icon }) => (
                 <Card
-                key={id}
+                key={`${method}-{id}`}
                 id={id}
                 verb={verb}
                 method={method}
