@@ -14,13 +14,20 @@ export default function FormModal({ openModal, serie, confirmLoading, onSubmit, 
             onCancel={onCancel}
             confirmLoading={confirmLoading}
             destroyOnHidden>
-                <Form form={form} layout='vertical' initialValues={serie} on Finish={onSubmit}>
+
+                <Form 
+                    form={form}
+                    layout='vertical'
+                    initialValues={serie} 
+                    onFinish={onSubmit}
+                >
+
                     <Form.Item
                         name='title'
                         label="Título"
                         rules={[
                         {
-                            require: true,
+                            required: true,
                             min: 3,
                             max: 120,
                             message: 'Título obrigatório deve ter 3 e 120 caracteres.'
@@ -31,12 +38,10 @@ export default function FormModal({ openModal, serie, confirmLoading, onSubmit, 
 
                      <Form.Item
                         name='genero'
-                        label="genero"
+                        label="Genero"
                         rules={[
                         {
-                            require: true,
-                            min: 3,
-                            max: 120,
+                            required: true,
                             message: 'Genero obrigatório.'
                         },
                     ]}>
@@ -48,9 +53,7 @@ export default function FormModal({ openModal, serie, confirmLoading, onSubmit, 
                         label="Plataforma"
                         rules={[
                         {
-                            require: true,
-                            min: 3,
-                            max: 120,
+                            required: true,
                             message: 'Plataforma é obrigatória.'
                         },
                     ]}>
@@ -60,14 +63,14 @@ export default function FormModal({ openModal, serie, confirmLoading, onSubmit, 
                      <Form.Item
                         name='numero_temporadas'
                         label="Temporadas"
+                        required
                         rules={[
                         {
-                            require: true,
-                            type: 'number',
+                            required: true,
                             message: 'Número de temporadas é obrigatório.',
                         },
                     ]}>
-                    <Input placeholder="ex: 5" min={1} style={{ width:'100%' }} />
+                    <InputNumber placeholder="ex: 5" min={1} style={{ width:'100%' }} />
 
                     </Form.Item>
 
@@ -76,16 +79,15 @@ export default function FormModal({ openModal, serie, confirmLoading, onSubmit, 
                         label="Ano de Lançamento"
                         rules={[
                         {
-                            require: true,
-                            type: 'number',
+                            required: true,
                             message: 'Ano de lançamento obrigatório.',
                         },
                     ]}>
-                        <Input placeholder="ex: 2008" min={1900} max={2100} style={{ width: '100%'}} />
+                        <InputNumber placeholder="ex: 2008" min={1900} max={2100} style={{ width: '100%'}} />
                     </Form.Item>
 
                      <Form.Item
-                        name='ImageUrl'
+                        name='imageUrl'
                         label="URL da imagem"
                         rules={[
                         {

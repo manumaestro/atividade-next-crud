@@ -23,13 +23,12 @@ export default function CreatePage() {
             toast.error('Erro ao criar a série', { id: 'create' });
 
 
-
         } finally {
             setLoading(false);
         }
     };
 
-    reuturn (
+    return (
         <main>
             <h2>Post - Create</h2>
         <p>
@@ -40,6 +39,12 @@ export default function CreatePage() {
             <Button type='primary' onClick={() => setOpenModal(true)}>
                 Nova Série
             </Button>
+            <FormModal
+                openModal={openModal}
+                confirmLoading={loading}
+                onSubmit={handleSubmit}
+                onCancel={ () => setOpenModal (false)}
+                />
         </main>
     );
 }

@@ -10,25 +10,27 @@ export default function ApiKeyPage() {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        async function buscarSeries() {
+        async function buscarSerie() {
             try {
-                const resp = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/series?limit=50`, {
-                    headers: { 'x-api-key': process.env.NEXT_PUBLIC_API_KEY },
-                });
+                const resp = await axios.get(`${process.env.NEXT_PUBLIC_URL_SERIES}?limit=50`, 
+                {
+                    headers: { 
+                    'x-api-key': process.env.NEXT_PUBLIC_API_KEY },
+                }
+            );
 
                 toast.success('Series carregadas com sucesso', { id: 'getApiKey' });
                 setSeries(resp.data.data);
 
-            } catch (error) {
+            } catch {
                 toast.error('Erro ao buscar séries', {id: 'getApiKey'});
 
             } finally {
                 setLoading(false);
-
             }
         }
 
-        buscarSeries();
+        buscarSerie();
     }, []);
 
     return (
