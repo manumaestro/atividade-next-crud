@@ -53,6 +53,15 @@ export const examples = [
         color: 'orange',
         Icon: PlusCircle,
     },
+    {
+         id: 2,
+        method: 'Read',
+        verb: 'Get',
+        description: 'Lê série via modal e API Route.',
+        color: 'green',
+        Icon: List,
+    },
+    
 
 ];
 

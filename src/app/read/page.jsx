@@ -1,47 +1,26 @@
 'use client';
 
+import Serieslist from '@components/SeriesList';
 import { Skeleton } from 'antd';
-import axios from 'axios';
-import Link from 'next/link';
-import { useEffect, useState } from 'react';
-import toast from 'react-hot-toast';
+import { Suspense } from 'react';
 
 export default function ReadPage() {
-    const [series, setSeries] = useState([]);
-    const [loading, setLoading] = useState(true)
-
-    useEffect(() => {
-        async function buscarSeries() {
-            try {
-                const resp = await axios.get('/api/series?limit=50');
-                setSeries(resp.data.data);
-                toast.success('Séries carregadas!', { id: 'read' });
-            } catch (error) {
-                toast.error('Erro ao buscar as séries.', { id: 'read' });
-            } finally {
-                setLoading(false);
-            }
-        }
-
-        buscarSeries();
-    }, []);
 
     return (
         <main>
-            <h2>Read</h2>
-            <p>Busca séries via /api/series (nossa API route.js), que fala com a Codeverse direto do servidor.</p>
+            <h2>Get - Read</h2>
+            <p>O servidor chama a API com api-key privada; o Skeleton aparece até que as séries cheguem usando a tag nativa do React (Suspense).</p>
 
-            {loading ? (
+            <p>Abra o Devtools - Network: a chamada à API não aparece. Clique em numa série para buscá-la pelo ID.</p>
+
+            <Suspense
+             fallback={
                 <div className='skeleton'>
-                    <Skeleton active/>
+                    <Skeleton active />
                 </div>
-            ) : (
-                    <ul>
-                        {series.map((item) => (
-                            <li key={item.id}>{item.title}</li>
-                        ))}
-                    </ul>
-            )}
+            }> 
+            <Serieslist />
+            </Suspense>
         </main>
-    )
+    );
 }
